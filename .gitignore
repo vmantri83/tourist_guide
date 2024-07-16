@@ -1,0 +1,22 @@
+# Node Modules
+node_modules
+
+# Compiled output
+/build
+/dist
+/*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+
+# Python virtual environment
+venv
+
+# Other
+*.pyc
+.DS_Store
