@@ -2,21 +2,23 @@ from flask import Flask, request, jsonify, send_from_directory
 import requests
 import flickrapi
 import logging
+from dotenv import load_dotenv
+import os
 
-app = Flask(__name__, static_url_path='')
+load_dotenv()
+
+app = Flask(__name__)
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 
-# Flickr API credentials (replace with your own)
-FLICKR_API_KEY = 'aab885bd72de41b4f5f4d59c41389e37'
-FLICKR_API_SECRET = '626308b3d28af17b'
 
-flickr = flickrapi.FlickrAPI(FLICKR_API_KEY, FLICKR_API_SECRET, format='parsed-json')
+flickr = flickrapi.FlickrAPI(os.environ.get("FLICKR_API_KEY"), os.environ.get("FLICKR_API_SECRET"), format='parsed-json')
 
 @app.route('/')
 def index():
-    return send_from_directory('static', 'index.html')
+    # return "Hellojfsiz"
+    return send_from_directory('client', 'index.html')
 
 @app.route('/recommendations', methods=['POST'])
 def get_recommendations():
